@@ -7,28 +7,20 @@ using ull=unsigned long long;
        string s;cin>>s;
        int n=s.length();
        int ans=0;
-       
-       for(int i=0;i<n;i++){
-          string temp="";
-         for(int j=i;j<n;j++){
-           temp+=s[j];
-        //    int currlength=temp.length();
-        //    string now = s.substr(j+1,currlength);
-        //    if(now.length()!=temp.length()){continue;}
-        //    int p1=0;bool f=1;
-        //     int ok=now.length();
-        //    while(p1<ok){
-        //      if(temp[p1]!=now[p1] && temp[p1]!='?' && now[p1]!='?'){
-        //        f=0;break;
-        //      }p1++;
-        //    }
-        //    if(f){
-        //     ans=max(ans,2*ok);
-        //    }
-             
+       for(int i=1;i<=n;i++)
+       { int cnt=0;
+        for(int j=0;j<n-i;j++){
+          
+          cnt+=(s[j]==s[j+i] || s[j]=='?' || s[j+i]=='?');
+          if(j-i>=0){
+           cnt-=(s[j]==s[j-i] || s[j]=='?' || s[j-i]=='?');
           }
+          if(cnt==i){
+             ans=max(ans,2*i);
+          }
+        }
        }
-     cout<<ans<<endl;
+        cout<<ans<<endl;
 
 return;
 }
