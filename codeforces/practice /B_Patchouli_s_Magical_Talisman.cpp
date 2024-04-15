@@ -7,6 +7,7 @@ using ull=unsigned long long;
        ll n;cin>>n;
        ll arr[n];
        for(int i=0;i<n;i++)cin>>arr[i];
+       sort(arr,arr+n);
        ll sum=0;ll even=0;
        for(int i=0;i<n;i++){
           if(arr[i]%2==0){
@@ -18,10 +19,14 @@ using ull=unsigned long long;
         cout<<even<<endl;
       }else{  
         even--;int cnt=0;
-        while(sum%2==0 && sum>0){
-             cnt++;sum/=2;
+        int ans=INT_MAX;
+        for(int i=0;i<n;i++){
+            cnt=0;
+           while(arr[i]%2==0 && arr[i]>0){
+              arr[i]/=2;cnt++;
+           }ans=min(cnt,ans);
         }
-        cout<<even+cnt<<endl;
+        cout<<even+ans<<endl;
       }
 
 return;
