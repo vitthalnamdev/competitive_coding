@@ -12,6 +12,7 @@ using ull=unsigned long long;
        {
           ll sum=0;
           for(int i=0;i<n;i++)sum+=arr[i];
+          int left=k/n;
           cout<<sum+(2*k-1-n)*n/2<<'\n';
        }else{
         ll curr=0;ll ans=0;

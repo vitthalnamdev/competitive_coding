@@ -25,7 +25,7 @@ int32_t main(){
     while(t--){
         int n;cin>>n;
         oset<pair<int, int>>b,c;
-        vector<array<int,3>>a(n);
+        vector<array<int,3>>a(n);   
         vector<int>aa(n),bb(n) ;
         rep(i, n)cin>>a[i][0]>>a[i][1],a[i][2]=i;
     
