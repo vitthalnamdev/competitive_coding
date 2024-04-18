@@ -5,7 +5,7 @@ using ull=unsigned long long;
 
  void solve(){
        int n,k;cin>>n>>k;
-       
+       // ok bitch
     
 
 
