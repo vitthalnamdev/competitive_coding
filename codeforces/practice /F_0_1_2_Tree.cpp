@@ -3,12 +3,10 @@ using namespace std;
 using ll =long long int;
 using ull=unsigned long long;
 
- void solve(){
-  ll n;cin>>n;
-  ll arr[n];
-  for(int i=0;i<n;i++)cin>>arr[i];     
+void solve(){
+    int a,b,c;cin>>a>>b>>c; 
+       
 
-   
 
 
 
