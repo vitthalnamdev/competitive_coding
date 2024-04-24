@@ -10,32 +10,18 @@ using ull=unsigned long long;
       sort(arr,arr+x);
       map<int,int>count;
       for(int i=0;i<x;i++){
-        count[(arr[i])]=1;
+        count[(arr[i])%n]=1;
       }
       int ans=0;
       for(int i=0;i<x;i++){
-         int diff=0;
-         if(i+1<x)diff=(arr[(i+1)]-arr[i]);
-         else diff=n+arr[0]-arr[i];
-         diff=max(diff-1,0);
-         int prev=diff;
-         diff=min(diff/2,y);
-         y-=diff;
-         if(prev%2)ans+=(2*diff+1);
-       }   
-       for(int i=0;i<x;i++){
-         int diff=0;
-         if(i+1<x)(diff=arr[(i+1)]-arr[i]);
-         else diff=n+arr[0]-arr[i];
-         diff=max(diff-1,0);
-         int prev=diff;
-         diff=min(diff/2,y);
-         y-=diff;
-          
-         if(prev%2==0)ans+=(2*diff);
+         if(count[(arr[i]+1)%n]==0 && count[(arr[i]+2)%n]==1){
+             ans++;
+         }
       }
-
-      cout<<ans+x-2+y<<endl;
+      for(int i=1;i<x;i++){
+        int diff=arr[i]-arr[i-1];
+      }
+      
 return;
 }
 int main()
