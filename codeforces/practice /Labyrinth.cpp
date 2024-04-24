@@ -5,24 +5,38 @@ using ull=unsigned long long;
 char arr[1001][1001];
 int n,m;
 int vis[1001][1001];
-char parent[1001][1001];
-string ans;
-bool _getpath(pair<int,int>start,pair<int,int>end)
+vector<vector<pair<int,int>>>parent(1001,vector<pair<int,int>>(1001));
+void _getpath(pair<int,int>start,pair<int,int>end)
 {     
-     pair<int,int>curr=end;
-     map<char,int>x,y;
-     x['U']=0;x['D']=0;x['R']=-1;x['L']=1;
-      y['U']=1;y['D']=-1;y['R']=0;y['L']=0;
-     while(curr!=start){
-        if(parent[curr.first][curr.second]=='s'){
-            return false;
-        }
-        char now = (parent[curr.first][curr.second]);
-        ans=now+ans;
-        curr.first+=(y[now]);curr.second+=(x[now]); 
-     }
-   //  cout<<curr.first<<" "<<curr.second<<endl;
-     return true;
+   vector<pair<int,int>> ans; 
+	while(end.first != start.first or end.second != start.second)
+	{
+		ans.push_back(parent[end.first][end.second]);
+		end.first -= ans.back().first;
+		end.second -= ans.back().second;	
+	}
+  
+	reverse(ans.begin(), ans.end());
+	cout << ans.size() << endl;
+	for(auto c: ans)
+	{
+		if(c.first == 1 and c.second ==0)
+		{
+			cout << 'D';
+		}
+		else if(c.first == -1 and c.second ==0)
+		{
+			cout << 'U';
+		}
+		else if(c.first == 0 and c.second == 1)
+		{
+			cout << 'R';
+		}
+		else if(c.first == 0 and c.second == -1)
+		{
+			cout << 'L';
+		}
+	}
 }
 bool e(int i,int j)
 {
@@ -42,32 +56,27 @@ void bfs(pair<int,int>start)
         vis[i][j]=1;
         if(e(i+1,j)){
            q.push({i+1,j});
-           parent[i+1][j]='D';
+           parent[i+1][j]={1,0};
         }
         if(e(i-1,j))
         {
            q.push({i-1,j});
-           parent[i-1][j]='U';
+           parent[i-1][j]={-1,0};
         }
         if(e(i,j+1))
         {
            q.push({i,j+1});
-           parent[i][j+1]='R';
+           parent[i][j+1]={0,1};
         }
         if(e(i,j-1))
         {
            q.push({i,j-1});
-           parent[i][j-1]='L';
+           parent[i][j-1]={0,-1};
         }
     }
 }
  void solve(){
        cin>>n>>m;
-       for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            parent[i][j]='s';
-        }
-       }
       pair<int,int>start,end;
       for(int i=0;i<n;i++){
         for(int j=0;j<m;j++){
@@ -77,15 +86,12 @@ void bfs(pair<int,int>start)
         }
       }
      bfs(start);
-     //cout<<parent[end.first-1][end.second]<<endl;
-     ans="";
-     bool check = _getpath(start,end);
-     if(check==0){
+     
+     if(!vis[end.first][end.second]){
         cout<<"NO"<<endl;
      }else{
-        cout<<"YES"<<endl;
-        cout<<ans.length()<<endl;
-        cout<<ans<<endl;
+      cout<<"YES"<<endl;
+        _getpath(start,end);
      }
 
 return;
