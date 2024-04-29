@@ -10,6 +10,8 @@ using ull=unsigned long long;
        map<int,int>count;
        for(int i=0;i<n;i++){
         int x;cin>>x;
+        if(count[x]>=1){continue;}
+          count[x]++;
           arr.push_back(x);
        }
         sort(arr.begin(),arr.end());
@@ -18,7 +20,7 @@ using ull=unsigned long long;
        dp[n]=dp[n-1]=1;
        for(int i=n-2;i>=1;i--){
           int ele=arr[i]-arr[i-1];
-          if(ele==1){
+          if(ele==1){   
             dp[i]=dp[i+1]^1;
           }else{
             dp[i]=1;
