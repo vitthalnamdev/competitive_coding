@@ -8,8 +8,8 @@ ll inv(int a) {
   return a <= 1 ? a : mod - (long long)(mod/a) * inv(mod % a) % mod;
 }
  void solve(){
-       
-
+       int x;cin>>x;
+  cout<<log2(x)<<endl;
 
 
 
