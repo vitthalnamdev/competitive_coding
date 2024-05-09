@@ -3,59 +3,53 @@ using namespace std;
 using ll =long long int;
 using ull=unsigned long long;
 
-bool check(ll mid, ll arr[],ll n,ll k)
-{
-    ll cnt=0;
-    for(ll i=0;i<n;i++){
-        ll temp=0;
-        for(ll j=0;j<64;j++){
-            if(((mid)&(1LL<<j))){
-             if((arr[i]&(1LL<<j))==0){
-               cnt+=((1LL<<j)-temp);
-               temp=0;
-             }
-            }else{
-                temp += ((1LL<<j)&arr[i]);
-            }
-        }
-        if(cnt<0){
-          return 0;
-        }   
-    }
-    return cnt<=k;
-}
-// 1011011101000011100
-//10010001101111110000
  void solve(){
-       ll n,q;cin>>n>>q;
-       ll arr[n];
-       for(int i=0;i<n;i++)cin>>arr[i];
-        
-       while(q--)
-       {
-        ll k;cin>>k; 
-        ll start = 0, end =LLONG_MAX;
-    cout<<check(637468,arr,n,k)<<endl;
-        // while(end-start > 1)
-        // {
-        //     ll mid = (start + (end - start)/2);
-        //   //  cout<<mid<<endl;
-        //     if(check(mid,arr,n,k)){
-        //         start= mid;
-        //     }else{
-        //         end= mid -1;
-        //     }
-        // }
-
-        // if(check(end,arr,n,k))
-        // {
-        //     cout<<end<<endl;
-        // }else{
-        //     cout<<start<<endl;
-        // }
-       }
-return;
-}
+    ll n;cin>>n;ll q;cin>>q;
+    ll brr[n];
+    for(int i=0;i<n;i++)cin>>brr[i];
+    while(q--)  
+    {
+        vector<ll>arr(n);
+        for(int i=0;i<n;i++)arr[i]=brr[i];
+        ll k;cin>>k;
+        ll ans=0;
+        for(ll i=60;i>=0;i--){
+           ll sum = 0;
+           ll now = (1LL<<i);
+           for(int j=0;j<n;j++){
+            ll temp = 0;
+            if(((arr[j]&(1LL<<i)))==0){
+              for(int l=0;l<i;l++){
+                  temp += ((1LL<<l) & arr[j]);
+              }
+            }else {
+                temp = now;
+            }
+            sum+=(now - temp );
+             if(sum>1e18 || sum< 0){
+                break;
+             }
+           }
+            if(sum<0 || sum>1e18){
+                continue;
+            }
+           if(sum<=k){
+              ans|=(now);
+              k-=sum;
+              for(int j=0;j<n;j++){
+                if(((arr[j]&(1LL<<i)))==0){
+                 for(int l=0;l<i;l++){
+                   if(arr[j]&(1LL<<l)){
+                     arr[j]^=(1LL<<l);
+                   }
+                 }
+                }
+            } 
+          } 
+      }
+      cout<<ans<<endl;   
+    }
+ }
 int main()
 {
 std::ios::sync_with_stdio(false);std::cin.tie(nullptr);std::cout.tie(nullptr);
