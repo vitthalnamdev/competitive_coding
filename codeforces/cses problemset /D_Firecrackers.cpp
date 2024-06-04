@@ -3,7 +3,9 @@ using namespace std;
 #define ll long long 
 
 bool check(ll mx,ll time,ll arr[],ll m)
-{
+{  
+    if(mx==0)return true;
+    mx = min(mx,m);
     int cnt =0 ;
     ll brr[mx];
     for(int i=0;i<mx;i++){brr[i]=arr[i];}
@@ -17,14 +19,15 @@ bool check(ll mx,ll time,ll arr[],ll m)
         }
     }
     return cnt==mx;
-}
+}   
 
 void solve(){
 ll n,m,a,b;cin>>n>>m>>a>>b;
 ll arr[m];
 for(int i=0;i<m;i++)cin>>arr[i];
  sort(arr,arr+m);
- ll mx = abs(b-a-1);
+ ll mx = abs(a-b)-1;
+  
  ll time;
  if(a<b){
    time = b-2;
@@ -32,7 +35,7 @@ for(int i=0;i<m;i++)cin>>arr[i];
    time = n-b-1;
  }
   ll start = 0,end = mx;
-  while(end- start > 1){
+  while(end-start > 1){
     ll mid = (end + start ) /2 ;
     if(check(mid,time,arr,m)){
         start = mid;

@@ -29,10 +29,12 @@ void solve(){
   }
   int stone;cin>>stone;
    dfs(stone,0);
-   if(dp[stone]==0){
-     cout<<"Ron"<<endl;
-   }else {
-    cout<<"Hermione"<<endl;
+   while(t--){
+    if(dp[stone]==0){
+      cout<<"Ron"<<endl;
+    }else {
+     cout<<"Hermione"<<endl;
+    }
    }
 }
 int main(){

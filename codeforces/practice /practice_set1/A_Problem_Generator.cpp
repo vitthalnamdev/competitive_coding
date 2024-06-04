@@ -2,7 +2,18 @@
 using namespace std;
   #define ll long long 
 void solve(){
-int arr[0];
+int n,m;cin>>n>>m;
+string s;cin>>s;
+vector<int>arr(26,0);
+for(int i=0;i<n;i++){
+    arr[s[i]-'A']++;
+}
+int ans=0;
+for(int i=0;i<7;i++){
+ if(arr[i]<m){
+    ans+=(m-arr[i]);
+ }
+}cout<<ans<<endl;
 
 }
 int main(){
