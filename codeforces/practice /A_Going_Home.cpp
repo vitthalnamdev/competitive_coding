@@ -51,11 +51,12 @@ int main() {
     two = i;
   }
   vector<pair<int, int>> met(2 * mx, make_pair(-1, -1));
-  sort(ind.begin(), ind.end());
+  //sort(ind.begin(), ind.end());
   if (two != -1) {
     met[two + two] = make_pair(p1[two], p2[two]);
   }
-  for (int i = 0; i < (int) ind.size(); i++) {
+  //cout<<ind.size()<<endl;
+     for (int i = 0; i < (int) ind.size(); i++) {
     for (int j = i + 1; j < (int) ind.size(); j++) {
       int sum = a[ind[i]] + a[ind[j]];
       if (met[sum].first != -1) {
