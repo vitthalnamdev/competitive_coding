@@ -32,7 +32,7 @@ while(p2>=p1){
  
 vector<pair<int,int>>check = {{arr[p2], 1}, {arr[p1], 0} };
 sort(check.begin(),check.end());
-if(check[0].first==check[1].first){
+if(check[0].first==check[1].first && check[1].first > prev){
     
     if(suff[p2]>pref[p1]){
         

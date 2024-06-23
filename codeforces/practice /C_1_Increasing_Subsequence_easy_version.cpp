@@ -7,6 +7,25 @@ int arr[n];
 for(int i=0;i<n;i++){
     cin>>arr[i];
 }
+int pref[n];
+int suff[n];int cnt = 1;
+suff[0] = 1;
+for(int i=1;i<n;i++){
+  cnt++;
+  if(arr[i]>=arr[i-1]){
+    cnt = 1;
+  }
+  suff[i] = cnt;
+}
+pref[n-1] = 1;cnt = 1;
+for(int i=n-2;i>=0;i--){
+  cnt++;
+  if(arr[i]>=arr[i+1]){
+    cnt = 1;
+  }
+  pref[i] = cnt;
+}
+ 
 int p1 = 0, p2 = n-1;
 int prev = 0;string ans = "";
 while(p2>=p1){
